@@ -7,19 +7,29 @@
 //
 
 import Foundation
+import UIKit
 
 struct Item: Codable, Hashable {
     let identifier = UUID()
     let name: String
     let title: String
     let author: String
-    let date = Date()
+    let created: Double
+    let ups: Int
     let thumbnail: String?
+    let thumbnailWidth: Int
+    let thumbnailHeight: Int
     let numComments: Int
-    let wasRead: Bool = false
+    var wasRead: Bool = false
+    
+    func dateString() -> String {
+        return Date(timeIntervalSince1970: created).description
+    }
     
     private enum CodingKeys: String, CodingKey {
-        case name, title, author, thumbnail
+        case name, title, author, created, ups, thumbnail
+        case thumbnailWidth = "thumbnail_width"
+        case thumbnailHeight = "thumbnail_height"
         case numComments = "num_comments"
     }
     
