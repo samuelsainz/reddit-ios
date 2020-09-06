@@ -81,6 +81,24 @@
 			path = ItemCell;
 			sourceTree = "<group>";
 		};
+		8637EE78250560E700D778F2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				86B595602503DDD000041D1B /* Main.storyboard */,
+				86B595662503DDD100041D1B /* Assets.xcassets */,
+				86B595682503DDD100041D1B /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8637EE7A2505617800D778F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8637EE762504392F00D778F2 /* ImageFetcher.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8657C9BB2503F291009AE4B0 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,12 +142,9 @@
 				86B5955C2503DDD000041D1B /* SceneDelegate.swift */,
 				86B595822503E47400041D1B /* Models */,
 				86B5957F2503DF0E00041D1B /* Home */,
-				86B595602503DDD000041D1B /* Main.storyboard */,
-				86B595662503DDD100041D1B /* Assets.xcassets */,
-				86B595682503DDD100041D1B /* LaunchScreen.storyboard */,
-				86B5956B2503DDD100041D1B /* Info.plist */,
+				8637EE78250560E700D778F2 /* Resources */,
 				86B595632503DDD000041D1B /* RedditMate.xcdatamodeld */,
-				8637EE762504392F00D778F2 /* ImageFetcher.swift */,
+				86B5956B2503DDD100041D1B /* Info.plist */,
 			);
 			path = RedditMate;
 			sourceTree = "<group>";
@@ -146,8 +161,9 @@
 		86B5957F2503DF0E00041D1B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				8657C9BC2503F299009AE4B0 /* Presenter */,
+				8637EE7A2505617800D778F2 /* Model */,
 				8657C9BB2503F291009AE4B0 /* View */,
+				8657C9BC2503F299009AE4B0 /* Presenter */,
 			);
 			path = Home;
 			sourceTree = "<group>";

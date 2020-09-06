@@ -67,5 +67,4 @@ class ImageFetcher {
       runningRequests[uuid]?.cancel()
       runningRequests.removeValue(forKey: uuid)
     }
-
 }
