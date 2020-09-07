@@ -14,7 +14,12 @@ class ItemTableViewCell: UITableViewCell {
     
     var onReuse: () -> Void = {}
 
+    @IBOutlet weak var timeSinceCreatedLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var numCommentsLabel: UILabel!
+    @IBOutlet weak var numUpsLabel: UILabel!
+    
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var thumbnailHeightConstraint: NSLayoutConstraint!
     
@@ -28,9 +33,13 @@ class ItemTableViewCell: UITableViewCell {
         
     func configure(withItem item: Item) {
         self.titleLabel?.text = item.title
+        self.authorLabel?.text = item.authorUserName()
+        self.timeSinceCreatedLabel.text = item.dateString()
+        self.numUpsLabel.text = item.numUpsText()
+        self.numCommentsLabel.text = item.numCommentsText()
         
-        if let thumbnail = item.thumbnail {
-            let ratio = CGFloat(item.thumbnailWidth) / CGFloat(item.thumbnailHeight)
+        if item.thumbnail != nil, let width = item.thumbnailWidth, let height = item.thumbnailHeight {
+            let ratio = CGFloat(width) / CGFloat(height)
             let newHeight = self.contentView.frame.size.width / ratio
             thumbnailHeightConstraint.constant = newHeight
         }

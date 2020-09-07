@@ -20,13 +20,18 @@ class HomePresenter {
     }
     
     func fetchItems() {
-        let items = [
-            Item(name: "t3_jh8ef8e", title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.", author: "Rekrabsrm", created: 1599285706.0, ups: 232, thumbnail: "https://a.thumbs.redditmedia.com/p22H5tZXMfSVmgbPyNbtkZuAD5FQCjqrZQACYRYeyZ4.jpg", thumbnailWidth: 140, thumbnailHeight: 93, numComments: 123),
-            Item(name: "t3_jh8ef8e", title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.", author: "Rekrabsrm", created: 1599285706.0, ups: 232, thumbnail: "https://a.thumbs.redditmedia.com/p22H5tZXMfSVmgbPyNbtkZuAD5FQCjqrZQACYRYeyZ4.jpg", thumbnailWidth: 140, thumbnailHeight: 93, numComments: 123),
-            Item(name: "t3_jh8ef8e", title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.", author: "Rekrabsrm", created: 1599285706.0, ups: 232, thumbnail: "https://a.thumbs.redditmedia.com/p22H5tZXMfSVmgbPyNbtkZuAD5FQCjqrZQACYRYeyZ4.jpg", thumbnailWidth: 140, thumbnailHeight: 93, numComments: 123),
-        ]
-        
-        self.view?.showItems(items)
+        ItemsService.fetchIems() { (items, error) in
+            guard error == nil else {
+                // TODO: Show error view
+                return
+            }
+            
+            guard let items = items else {
+                return
+            }
+            
+            self.view?.showItems(items)
+        }
     }
     
     /// Fetch an item's image and return a identifier for that transaction
@@ -41,7 +46,7 @@ class HomePresenter {
             let image = try result.get()
             completion(image)
           } catch {
-            print("Error when fetching image: " + error.localizedDescription)
+            print("Error when fetching image: " + thumbnailURL.absoluteString + error.localizedDescription)
           }
         }
     }
