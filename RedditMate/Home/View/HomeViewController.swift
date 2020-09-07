@@ -10,6 +10,9 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
+    typealias DataSource = UITableViewDiffableDataSource<Section, Item>
+    
     lazy var presenter: HomePresenter = HomePresenter(view: self)
     
     var dataSource: DataSource!
@@ -20,6 +23,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         configureTableView()
+        configureTableDataSource()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,7 +32,19 @@ class HomeViewController: UIViewController {
         // TODO: move to view did load
         presenter.fetchItems()
     }
+    
+    func configureTableView() {
+        let itemCellNib = UINib(nibName: String(describing: ItemTableViewCell.self), bundle: nil)
+        
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.delegate = self
+        tableView.register(itemCellNib, forCellReuseIdentifier: ItemTableViewCell.identifier)
+    }
 }
+
+// MARK: MVP View implementation
 
 extension HomeViewController: HomeView {
     
@@ -37,27 +53,24 @@ extension HomeViewController: HomeView {
     }
 }
 
+// MARK: Table View diffable data source
+
 extension HomeViewController {
-    
-    typealias DataSource = UITableViewDiffableDataSource<Section, Item>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     
     enum Section {
         case main
     }
     
-    func configureTableView() {
-        tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(UINib(nibName: String(describing: ItemTableViewCell.self), bundle: nil), forCellReuseIdentifier: ItemTableViewCell.identifier)
-        
+    func configureTableDataSource() {
         dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: self.tableView) {
             (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
             
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemTableViewCell.identifier, for: indexPath) as! ItemTableViewCell
             
             cell.configure(withItem: item)
+            cell.onDismiss = { [weak self] in
+                self?.presenter.itemDismissed(index: indexPath.row)
+            }
             
             if let thumbnail = item.thumbnail {
                 let token = self.presenter.fetchItemImage(urlString: thumbnail) { image in
@@ -79,5 +92,14 @@ extension HomeViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(items)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+// MARK: Table View Delegate
+
+extension HomeViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }

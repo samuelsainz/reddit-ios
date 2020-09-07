@@ -7,13 +7,13 @@
 //
 import Foundation
 
-// MARK: - Response
+// MARK: Response
 struct APIResponse: Codable {
     let kind: Kind
     let data: ResponseData
 }
 
-// MARK: - ResponseData
+// MARK: ResponseData
 struct ResponseData: Codable {
     let modhash: String
     let dist: Int
@@ -22,7 +22,7 @@ struct ResponseData: Codable {
     let before: String?
 }
 
-// MARK: - Child
+// MARK: Child
 struct Child: Codable {
     let kind: Kind
     let data: Item
