@@ -20,6 +20,8 @@
 		863FFB4C25081E860020AE54 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863FFB4B25081E860020AE54 /* String+Additions.swift */; };
 		863FFB4E25081F810020AE54 /* PostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863FFB4D25081F810020AE54 /* PostImage.swift */; };
 		863FFB5025082BDF0020AE54 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863FFB4F25082BDF0020AE54 /* PostDetailView.swift */; };
+		863FFB5425083C1C0020AE54 /* SplitCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863FFB5325083C1C0020AE54 /* SplitCoordinator.swift */; };
+		863FFB5625083DC90020AE54 /* SplitMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863FFB5525083DC90020AE54 /* SplitMainCoordinator.swift */; };
 		8657C9BE2503F368009AE4B0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8657C9BD2503F368009AE4B0 /* HomeView.swift */; };
 		86B5955B2503DDD000041D1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5955A2503DDD000041D1B /* AppDelegate.swift */; };
 		86B5955D2503DDD000041D1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5955C2503DDD000041D1B /* SceneDelegate.swift */; };
@@ -60,6 +62,8 @@
 		863FFB4B25081E860020AE54 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		863FFB4D25081F810020AE54 /* PostImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImage.swift; sourceTree = "<group>"; };
 		863FFB4F25082BDF0020AE54 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		863FFB5325083C1C0020AE54 /* SplitCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitCoordinator.swift; sourceTree = "<group>"; };
+		863FFB5525083DC90020AE54 /* SplitMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMainCoordinator.swift; sourceTree = "<group>"; };
 		8657C9BD2503F368009AE4B0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86B595572503DDD000041D1B /* RedditMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B5955A2503DDD000041D1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -264,9 +268,11 @@
 		86F6D4852507263200C280E8 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				863FFB5325083C1C0020AE54 /* SplitCoordinator.swift */,
 				861C54742507056500380DE5 /* Coordinator.swift */,
 				86C902332507D87E00036B0C /* PostsCoordinator.swift */,
 				861C5478250710AF00380DE5 /* MainCoordinator.swift */,
+				863FFB5525083DC90020AE54 /* SplitMainCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 			files = (
 				863F74402507FFAF001E69FC /* PostDetailPresenter.swift in Sources */,
 				86B5955F2503DDD000041D1B /* HomeViewController.swift in Sources */,
+				863FFB5625083DC90020AE54 /* SplitMainCoordinator.swift in Sources */,
 				8657C9BE2503F368009AE4B0 /* HomeView.swift in Sources */,
 				861C547D2507150B00380DE5 /* PostDetailViewController.swift in Sources */,
 				861C5477250705D800380DE5 /* Storyboarded.swift in Sources */,
@@ -392,6 +399,7 @@
 				86FE545725056ADB00A4A120 /* APIResponse.swift in Sources */,
 				86B595652503DDD000041D1B /* RedditMate.xcdatamodeld in Sources */,
 				8637EE742504010D00D778F2 /* PostTableViewCell.swift in Sources */,
+				863FFB5425083C1C0020AE54 /* SplitCoordinator.swift in Sources */,
 				86B595812503E40100041D1B /* HomePresenter.swift in Sources */,
 				86B595842503E48700041D1B /* Post.swift in Sources */,
 				86B5955D2503DDD000041D1B /* SceneDelegate.swift in Sources */,
