@@ -48,10 +48,10 @@ class ItemTableViewCell: UITableViewCell {
         
     func configure(withItem item: Item) {
         self.titleLabel?.text = item.title
-        self.authorLabel?.text = item.authorUserName()
-        self.timeSinceCreatedLabel.text = item.dateString()
-        self.numUpsLabel.text = item.numUpsText()
-        self.numCommentsLabel.text = item.numCommentsText()
+        self.authorLabel?.text = item.authorUserName
+        self.timeSinceCreatedLabel.text = item.dateString
+        self.numUpsLabel.text = item.numUpsString
+        self.numCommentsLabel.text = item.numCommentsString
         
         if item.thumbnail != nil, let width = item.thumbnailWidth, let height = item.thumbnailHeight {
             let ratio = CGFloat(width) / CGFloat(height)

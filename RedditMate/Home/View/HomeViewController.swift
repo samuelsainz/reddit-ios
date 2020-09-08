@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, Storyboarded {
     
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: PostsCoordinator?
     
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     typealias DataSource = UITableViewDiffableDataSource<Section, Item>
@@ -23,6 +23,8 @@ class HomeViewController: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Reddit Posts"
         
         configureTableView()
         configureTableDataSource()

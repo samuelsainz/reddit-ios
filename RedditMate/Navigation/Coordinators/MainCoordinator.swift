@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 
-class MainCoordinator: Coordinator {
-    var subCoordinators = [Coordinator]()
+/// Main coordinator for the app.
+/// Use this coordinator to navigate through view controllers
+class MainCoordinator: Coordinator, PostsCoordinator {
+    
+    var childCoordinators = [Coordinator]()
+    
     var navController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -28,4 +32,8 @@ class MainCoordinator: Coordinator {
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
     }
+}
+
+protocol PostsCoordinator: AnyObject {
+    func showPostDetail(post: Item)
 }

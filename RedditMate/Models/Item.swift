@@ -22,15 +22,18 @@ struct Item: Codable, Hashable {
     let numComments: Int
     var wasRead: Bool = false
     
-    func dateString() -> String {
+    /// Returns date with format 'x time ago'
+    var dateString: String {
         return Date(timeIntervalSince1970: created).timeAgoString()
     }
     
-    func authorUserName() -> String {
+    /// Returns the username with the Reddit's user prefix 'u/'
+    var authorUserName: String {
         return "u/" + author
     }
     
-    func numCommentsText() -> String {
+    /// Returns a string with the number of comments in Ks
+    var numCommentsString: String {
         if (numComments < 1000) {
             return String(numComments)
         } else {
@@ -38,7 +41,8 @@ struct Item: Codable, Hashable {
         }
     }
     
-    func numUpsText() -> String {
+    /// Returns a string with the number of upvotes in Ks
+    var numUpsString: String {
         if (ups < 1000) {
             return String(ups)
         } else {
