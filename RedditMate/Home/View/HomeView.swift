@@ -12,4 +12,7 @@ protocol HomeView: class {
     
     /// Show `items` in `HomeView`
     func showItems(_ items: [Item])
+    
+    /// Show the `item` detail
+    func showItemDetail(item: Item)
 }

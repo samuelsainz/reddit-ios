@@ -8,7 +8,9 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, Storyboarded {
+    
+    weak var coordinator: MainCoordinator?
     
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
     typealias DataSource = UITableViewDiffableDataSource<Section, Item>
@@ -24,12 +26,6 @@ class HomeViewController: UIViewController {
         
         configureTableView()
         configureTableDataSource()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // TODO: move to view did load
         presenter.fetchItems()
     }
     
@@ -42,6 +38,14 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.register(itemCellNib, forCellReuseIdentifier: ItemTableViewCell.identifier)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 }
 
 // MARK: MVP View implementation
@@ -50,6 +54,10 @@ extension HomeViewController: HomeView {
     
     func showItems(_ items: [Item]) {
         updateItems(items)
+    }
+    
+    func showItemDetail(item: Item) {
+        self.coordinator?.showPostDetail(post: item)
     }
 }
 
@@ -100,6 +108,6 @@ extension HomeViewController {
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.presenter.itemSelected(index: indexPath.row)
     }
 }

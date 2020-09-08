@@ -54,6 +54,7 @@ class HomePresenter {
         // TODO: validate index
         // TODO: navigate
         var item = self.items![index]
+        self.view?.showItemDetail(item: item)
         item.wasRead = true
         // TODO update cell
     }
