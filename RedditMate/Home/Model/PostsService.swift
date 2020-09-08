@@ -1,5 +1,5 @@
 //
-//  ItemsService.swift
+//  PostsService.swift
 //  RedditMate
 //
 //  Created by Samuel Sainz on 9/6/20.
@@ -9,9 +9,9 @@
 import Foundation
 import Combine
 
-class ItemsService {
+class PostsService {
  
-    static func fetchIems(completion: @escaping ([Item]?, Error?) -> Void) {
+    static func fetchPosts(completion: @escaping ([Post]?, Error?) -> Void) {
         let url = URL(string: "https://www.reddit.com/best/.json?limit=30")!
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             // Check if an error occured
@@ -23,8 +23,8 @@ class ItemsService {
             // Serialize the data into an object
             do {
                 let apiResponse = try JSONDecoder().decode(APIResponse.self, from: data! )
-                let items = apiResponse.data.children.map { $0.data }
-                completion(items, nil)
+                let posts = apiResponse.data.children.map { $0.data }
+                completion(posts, nil)
             } catch {
                 print("Error during JSON serialization: \(error.localizedDescription)")
                 debugPrint(error)

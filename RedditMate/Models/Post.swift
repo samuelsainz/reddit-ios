@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  Post.swift
 //  RedditMate
 //
 //  Created by Samuel Sainz on 9/5/20.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Item: Codable, Hashable {
+struct Post: Codable, Hashable {
     let identifier = UUID()
     let name: String
     let title: String
@@ -62,7 +62,7 @@ struct Item: Codable, Hashable {
         hasher.combine(identifier)
     }
 
-    static func == (lhs: Item, rhs: Item) -> Bool {
+    static func == (lhs: Post, rhs: Post) -> Bool {
         return lhs.identifier == rhs.identifier
     }
 }

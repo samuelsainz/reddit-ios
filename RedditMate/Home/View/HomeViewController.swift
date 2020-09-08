@@ -12,8 +12,8 @@ class HomeViewController: UIViewController, Storyboarded {
     
     weak var coordinator: PostsCoordinator?
     
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
-    typealias DataSource = UITableViewDiffableDataSource<Section, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Post>
+    typealias DataSource = UITableViewDiffableDataSource<Section, Post>
     
     lazy var presenter: HomePresenter = HomePresenter(view: self)
     
@@ -28,17 +28,17 @@ class HomeViewController: UIViewController, Storyboarded {
         
         configureTableView()
         configureTableDataSource()
-        presenter.fetchItems()
+        presenter.fetchPosts()
     }
     
     func configureTableView() {
-        let itemCellNib = UINib(nibName: String(describing: ItemTableViewCell.self), bundle: nil)
+        let postCellNib = UINib(nibName: String(describing: PostTableViewCell.self), bundle: nil)
         
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
-        tableView.register(itemCellNib, forCellReuseIdentifier: ItemTableViewCell.identifier)
+        tableView.register(postCellNib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,12 +54,12 @@ class HomeViewController: UIViewController, Storyboarded {
 
 extension HomeViewController: HomeView {
     
-    func showItems(_ items: [Item]) {
-        updateItems(items)
+    func showPosts(_ posts: [Post]) {
+        updatePosts(posts)
     }
     
-    func showItemDetail(item: Item) {
-        self.coordinator?.showPostDetail(post: item)
+    func showPostDetail(post: Post) {
+        self.coordinator?.showPostDetail(post: post)
     }
 }
 
@@ -72,35 +72,35 @@ extension HomeViewController {
     }
     
     func configureTableDataSource() {
-        dataSource = UITableViewDiffableDataSource<Section, Item>(tableView: self.tableView) {
-            (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
+        dataSource = UITableViewDiffableDataSource<Section, Post>(tableView: self.tableView) {
+            (tableView: UITableView, indexPath: IndexPath, post: Post) -> UITableViewCell? in
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: ItemTableViewCell.identifier, for: indexPath) as! ItemTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
             
-            cell.configure(withItem: item)
+            cell.configure(withPost: post)
             cell.onDismiss = { [weak self] in
-                self?.presenter.itemDismissed(index: indexPath.row)
+                self?.presenter.postDismissed(index: indexPath.row)
             }
             
-            if let thumbnail = item.thumbnail {
-                let token = self.presenter.fetchItemImage(urlString: thumbnail) { image in
+            if let thumbnail = post.thumbnail {
+                let token = self.presenter.fetchPostImage(urlString: thumbnail) { image in
                     DispatchQueue.main.async {
                         cell.thumbnailImageView.image = image
                     }
                 }
                 
                 cell.onReuse = { [weak self] in
-                    self?.presenter.cancelItemImageFetch(token: token)
+                    self?.presenter.cancelPostImageFetch(token: token)
                 }
             }
             return cell
         }
     }
     
-    func updateItems(_ items: [Item]) {
+    func updatePosts(_ posts: [Post]) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
-        snapshot.appendItems(items)
+        snapshot.appendItems(posts)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
@@ -110,6 +110,6 @@ extension HomeViewController {
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.presenter.itemSelected(index: indexPath.row)
+        self.presenter.postSelected(index: indexPath.row)
     }
 }

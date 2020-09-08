@@ -13,7 +13,7 @@ class HomePresenter {
     
     weak var view: HomeView?
     
-    var items: [Item]?
+    var posts: [Post]?
     
     lazy var imageFetcher: ImageFetcher = ImageFetcher()
     
@@ -21,49 +21,49 @@ class HomePresenter {
         self.view = view
     }
     
-    // MARK: Items management
+    // MARK: Posts management
     
-    /// Get the items and update the view
-    func fetchItems() {
-        ItemsService.fetchIems() { (items, error) in
+    /// Get the posts and update the view
+    func fetchPosts() {
+        PostsService.fetchPosts() { (posts, error) in
             guard error == nil else {
                 // TODO: Show error view
                 return
             }
             
-            guard let items = items else {
+            guard let posts = posts else {
                 return
             }
             
-            self.items = items
-            self.view?.showItems(items)
+            self.posts = posts
+            self.view?.showPosts(posts)
         }
     }
     
-    /// This method is invoked when an item is dismissed
-    /// - Parameter index: Dismissed item index
-    func itemDismissed(index: Int) {
+    /// This method is invoked when a post is dismissed
+    /// - Parameter index: Dismissed post index
+    func postDismissed(index: Int) {
         // TODO: validate index
-        self.items?.remove(at: index)
-        self.view?.showItems(self.items!)
+        self.posts?.remove(at: index)
+        self.view?.showPosts(self.posts!)
     }
     
-    /// This method is invoked when an item is selected
-    /// - Parameter index: Selected item index
-    func itemSelected(index: Int) {
+    /// This method is invoked when a post is selected
+    /// - Parameter index: Selected post index
+    func postSelected(index: Int) {
         // TODO: validate index
         // TODO: navigate
-        var item = self.items![index]
-        self.view?.showItemDetail(item: item)
-        item.wasRead = true
+        var post = self.posts![index]
+        self.view?.showPostDetail(post: post)
+        post.wasRead = true
         // TODO update cell
     }
     
     // MARK: Images management
     
-    /// Fetch an item's image and return a identifier for that transaction
+    /// Fetch a post's image and return an identifier for that transaction
     /// Cancel this request using the returned token when cell is reused
-    func fetchItemImage(urlString: String, completion: @escaping (UIImage) -> Void) -> UUID? {
+    func fetchPostImage(urlString: String, completion: @escaping (UIImage) -> Void) -> UUID? {
         guard let thumbnailURL = URL(string: urlString) else {
             return nil
         }
@@ -80,7 +80,7 @@ class HomePresenter {
     
     /// Cancel the image fetch if it's not finished yet
     /// - Parameter token: The unique token that identifies the request to be cancelled
-    func cancelItemImageFetch(token: UUID?) {
+    func cancelPostImageFetch(token: UUID?) {
         guard let token = token else {
             return
         }

@@ -1,5 +1,5 @@
 //
-//  ItemTableViewCell.swift
+//  PostTableViewCell.swift
 //  RedditMate
 //
 //  Created by Samuel Sainz on 9/5/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ItemTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell {
     
-    static let identifier = "ItemTableViewCell"
+    static let identifier = "PostTableViewCell"
     
     var onReuse: () -> Void = {}
     var onDismiss: () -> Void = {}
@@ -46,14 +46,14 @@ class ItemTableViewCell: UITableViewCell {
         thumbnailHeightConstraint.constant = 0
     }
         
-    func configure(withItem item: Item) {
-        self.titleLabel?.text = item.title
-        self.authorLabel?.text = item.authorUserName
-        self.timeSinceCreatedLabel.text = item.dateString
-        self.numUpsLabel.text = item.numUpsString
-        self.numCommentsLabel.text = item.numCommentsString
+    func configure(withPost post: Post) {
+        self.titleLabel?.text = post.title
+        self.authorLabel?.text = post.authorUserName
+        self.timeSinceCreatedLabel.text = post.dateString
+        self.numUpsLabel.text = post.numUpsString
+        self.numCommentsLabel.text = post.numCommentsString
         
-        if item.thumbnail != nil, let width = item.thumbnailWidth, let height = item.thumbnailHeight {
+        if post.thumbnail != nil, let width = post.thumbnailWidth, let height = post.thumbnailHeight {
             let ratio = CGFloat(width) / CGFloat(height)
             let newHeight = self.contentView.frame.size.width / ratio
             thumbnailHeightConstraint.constant = newHeight

@@ -10,9 +10,9 @@ import Foundation
 
 protocol HomeView: class {
     
-    /// Show `items` in `HomeView`
-    func showItems(_ items: [Item])
+    /// Show `posts` in `HomeView`
+    func showPosts(_ posts: [Post])
     
-    /// Show the `item` detail
-    func showItemDetail(item: Item)
+    /// Show the `post` detail
+    func showPostDetail(post: Post)
 }

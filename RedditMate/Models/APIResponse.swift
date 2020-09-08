@@ -25,7 +25,7 @@ struct ResponseData: Codable {
 // MARK: Child
 struct Child: Codable {
     let kind: Kind
-    let data: Item
+    let data: Post
 }
 
 /// The kind is a String identifier that denotes the object's type
