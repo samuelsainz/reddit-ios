@@ -48,12 +48,12 @@ class PostTableViewCell: UITableViewCell {
         
     func configure(withPost post: Post) {
         self.titleLabel?.text = post.title
-        self.authorLabel?.text = post.authorUserName
+        self.authorLabel?.text = post.authorString
         self.timeSinceCreatedLabel.text = post.dateString
         self.numUpsLabel.text = post.numUpsString
         self.numCommentsLabel.text = post.numCommentsString
         
-        if post.thumbnail != nil, let width = post.thumbnailWidth, let height = post.thumbnailHeight {
+        if post.thumbnailLink != nil, let width = post.thumbnailWidth, let height = post.thumbnailHeight {
             let ratio = CGFloat(width) / CGFloat(height)
             let newHeight = self.contentView.frame.size.width / ratio
             thumbnailHeightConstraint.constant = newHeight

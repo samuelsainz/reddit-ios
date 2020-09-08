@@ -30,10 +30,7 @@ class MainCoordinator: Coordinator, PostsCoordinator {
     func showPostDetail(post: Post) {
         let vc = PostDetailViewController.instantiate()
         vc.coordinator = self
+        vc.post = post
         navController.pushViewController(vc, animated: true)
     }
-}
-
-protocol PostsCoordinator: AnyObject {
-    func showPostDetail(post: Post)
 }

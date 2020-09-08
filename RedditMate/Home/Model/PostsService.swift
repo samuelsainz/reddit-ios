@@ -12,7 +12,7 @@ import Combine
 class PostsService {
  
     static func fetchPosts(completion: @escaping ([Post]?, Error?) -> Void) {
-        let url = URL(string: "https://www.reddit.com/best/.json?limit=30")!
+        let url = URL(string: "https://www.reddit.com/best.json?limit=30")!
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             // Check if an error occured
             guard error == nil else {

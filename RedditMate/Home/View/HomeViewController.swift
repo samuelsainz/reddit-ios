@@ -23,9 +23,7 @@ class HomeViewController: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "Reddit Posts"
-        
+                
         configureTableView()
         configureTableDataSource()
         presenter.fetchPosts()
@@ -82,7 +80,7 @@ extension HomeViewController {
                 self?.presenter.postDismissed(index: indexPath.row)
             }
             
-            if let thumbnail = post.thumbnail {
+            if let thumbnail = post.thumbnailLink {
                 let token = self.presenter.fetchPostImage(urlString: thumbnail) { image in
                     DispatchQueue.main.async {
                         cell.thumbnailImageView.image = image
