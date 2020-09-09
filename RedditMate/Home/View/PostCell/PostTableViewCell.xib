@@ -43,7 +43,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kl-zv-Fwd">
-                        <rect key="frame" x="30" y="8.5" width="37.5" height="17.5"/>
+                        <rect key="frame" x="28" y="8.5" width="37.5" height="17.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -113,7 +113,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NbB-op-E3Y">
-                        <rect key="frame" x="14" y="13.5" width="8" height="8"/>
+                        <rect key="frame" x="12" y="13.5" width="8" height="8"/>
                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="8" id="Dxk-It-Ecd"/>
@@ -138,7 +138,7 @@
                     <constraint firstAttribute="trailing" secondItem="Qyi-Na-TTq" secondAttribute="trailing" constant="12" id="S6N-78-2wR"/>
                     <constraint firstItem="Qyi-Na-TTq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="UME-Ud-eDI"/>
                     <constraint firstItem="7i0-ms-8oF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XEZ-VA-aum"/>
-                    <constraint firstItem="NbB-op-E3Y" firstAttribute="leading" secondItem="Qyi-Na-TTq" secondAttribute="leading" constant="2" id="YQN-Zd-aoB"/>
+                    <constraint firstItem="NbB-op-E3Y" firstAttribute="leading" secondItem="Qyi-Na-TTq" secondAttribute="leading" id="YQN-Zd-aoB"/>
                     <constraint firstItem="5jq-gn-P3F" firstAttribute="top" secondItem="9kg-T0-HCW" secondAttribute="bottom" id="cjX-Pr-Yek"/>
                     <constraint firstItem="7Kl-zv-Fwd" firstAttribute="leading" secondItem="NbB-op-E3Y" secondAttribute="trailing" constant="8" id="hOx-mu-P6Q"/>
                     <constraint firstAttribute="trailing" secondItem="7i0-ms-8oF" secondAttribute="trailing" id="la3-P0-hMm"/>
@@ -157,7 +157,9 @@
                 <outlet property="thumbnailImageView" destination="7i0-ms-8oF" id="mJW-Dd-9Wh"/>
                 <outlet property="timeSinceCreatedLabel" destination="7Kl-zv-Fwd" id="MLW-1V-nhr"/>
                 <outlet property="titleLabel" destination="Qyi-Na-TTq" id="wVy-WD-Y4k"/>
-                <outlet property="unreadIndicatorView" destination="NbB-op-E3Y" id="aQz-6V-7Wt"/>
+                <outlet property="unreadIndicatorTrailing" destination="hOx-mu-P6Q" id="rAP-yX-Lfh"/>
+                <outlet property="unreadIndicatorView" destination="NbB-op-E3Y" id="eE1-x2-LEA"/>
+                <outlet property="unreadIndicatorWidth" destination="Dxk-It-Ecd" id="c1b-1T-WTZ"/>
             </connections>
             <point key="canvasLocation" x="54" y="-70"/>
         </tableViewCell>

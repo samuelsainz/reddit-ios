@@ -36,27 +36,41 @@ class HomePresenter {
             }
             
             self.posts = posts
-            self.view?.showPosts(posts)
+            
+            DispatchQueue.main.async {
+                self.view?.showPosts(posts, animated: true)
+            }
         }
     }
     
     /// This method is invoked when a post is dismissed
-    /// - Parameter index: Dismissed post index
-    func postDismissed(index: Int) {
-        // TODO: validate index
-        self.posts?.remove(at: index)
-        self.view?.showPosts(self.posts!)
+    /// - Parameter uuid: Dismissed post unique identifier
+    func postDismissed(uuid: UUID) {
+        guard let index = self.posts?.firstIndex(where: { $0.identifier == uuid }) else {
+            return
+        }
+        
+        self.posts!.remove(at: index)
+        self.view?.showPosts(self.posts!, animated: true)
     }
     
     /// This method is invoked when a post is selected
     /// - Parameter index: Selected post index
     func postSelected(index: Int) {
-        // TODO: validate index
-        // TODO: navigate
+        guard index >= 0,
+            index < (self.posts?.count ?? 0) else {
+            return
+        }
+        
         var post = self.posts![index]
-        self.view?.showPostDetail(post: post)
         post.wasRead = true
-        // TODO update cell
+        self.posts![index] = post
+        
+        // Update cell status
+        self.view?.showPosts(self.posts!, animated: false)
+        
+        // Show post detail
+        self.view?.showPostDetail(post: post)
     }
     
     // MARK: Images management

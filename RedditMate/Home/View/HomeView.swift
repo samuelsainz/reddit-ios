@@ -11,7 +11,7 @@ import Foundation
 protocol HomeView: class {
     
     /// Show `posts` in `HomeView`
-    func showPosts(_ posts: [Post])
+    func showPosts(_ posts: [Post], animated: Bool)
     
     /// Show the `post` detail
     func showPostDetail(post: Post)

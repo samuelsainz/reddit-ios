@@ -25,12 +25,16 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var unreadIndicatorView: UIView!
+    @IBOutlet weak var unreadIndicatorWidth: NSLayoutConstraint!
+    @IBOutlet weak var unreadIndicatorTrailing: NSLayoutConstraint!
+    
+    let unreadIndicatorSideSize: CGFloat = 8
+    let unreadIndicatorRightMargin: CGFloat = 8
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let side = self.unreadIndicatorView.frame.size.width
-        self.unreadIndicatorView.layer.cornerRadius = side / 2
+        self.unreadIndicatorView.layer.cornerRadius = unreadIndicatorSideSize / 2
         
         self.unreadIndicatorView.layer.shadowColor = UIColor.systemBlue.cgColor
         self.unreadIndicatorView.layer.shadowOpacity = 0.8
@@ -42,8 +46,8 @@ class PostTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         onReuse()
-        thumbnailImageView.image = nil
-        thumbnailHeightConstraint.constant = 0
+        self.thumbnailImageView.image = nil
+        self.thumbnailHeightConstraint.constant = 0
     }
         
     func configure(withPost post: Post) {
@@ -52,6 +56,8 @@ class PostTableViewCell: UITableViewCell {
         self.timeSinceCreatedLabel.text = post.dateString
         self.numUpsLabel.text = post.numUpsString
         self.numCommentsLabel.text = post.numCommentsString
+        self.unreadIndicatorWidth.constant = post.wasRead ? 0 : unreadIndicatorSideSize
+        self.unreadIndicatorTrailing.constant = post.wasRead ? 0 : unreadIndicatorRightMargin
         
         if post.thumbnailLink != nil, let width = post.thumbnailWidth, let height = post.thumbnailHeight {
             let ratio = CGFloat(width) / CGFloat(height)

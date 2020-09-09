@@ -52,8 +52,8 @@ class HomeViewController: UIViewController, Storyboarded {
 
 extension HomeViewController: HomeView {
     
-    func showPosts(_ posts: [Post]) {
-        updatePosts(posts)
+    func showPosts(_ posts: [Post], animated: Bool) {
+        updatePosts(posts, animated: animated)
     }
     
     func showPostDetail(post: Post) {
@@ -77,7 +77,7 @@ extension HomeViewController {
             
             cell.configure(withPost: post)
             cell.onDismiss = { [weak self] in
-                self?.presenter.postDismissed(index: indexPath.row)
+                self?.presenter.postDismissed(uuid: post.identifier)
             }
             
             if let thumbnail = post.thumbnailLink {
@@ -95,11 +95,11 @@ extension HomeViewController {
         }
     }
     
-    func updatePosts(_ posts: [Post]) {
+    func updatePosts(_ posts: [Post], animated: Bool) {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(posts)
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: animated)
     }
 }
 

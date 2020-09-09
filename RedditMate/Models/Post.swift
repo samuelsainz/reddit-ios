@@ -77,9 +77,11 @@ struct Post: Codable, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
+        hasher.combine(wasRead)
     }
 
     static func == (lhs: Post, rhs: Post) -> Bool {
         return lhs.identifier == rhs.identifier
+            && lhs.wasRead == rhs.wasRead
     }
 }
