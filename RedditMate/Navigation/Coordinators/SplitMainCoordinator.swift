@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SplitMainCoordinator: SplitCoordinator, PostsCoordinator {
     
@@ -30,5 +31,10 @@ class SplitMainCoordinator: SplitCoordinator, PostsCoordinator {
         let detailVC = PostDetailViewController.instantiate()
         detailVC.post = post
         splitController.viewControllers = [navController, detailVC]
+    }
+    
+    func showFullScreenImage(url: URL) {
+        let svc = SFSafariViewController(url: url)
+        splitController.present(svc, animated: true, completion: nil)
     }
 }

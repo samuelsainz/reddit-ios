@@ -144,17 +144,65 @@
                                                     <constraint firstItem="XZM-Ui-gYG" firstAttribute="leading" secondItem="tRs-1O-4SQ" secondAttribute="leading" constant="12" id="iM1-J3-jFf"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t32-mg-FB4">
-                                                <rect key="frame" x="0.0" y="320.5" width="414" height="0.0"/>
-                                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBB-wJ-ZnW">
+                                                <rect key="frame" x="0.0" y="320.5" width="414" height="300"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t32-mg-FB4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                                                        <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="300" id="rkb-Oc-b5x"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="qWJ-9X-XHx">
+                                                        <rect key="frame" x="188.5" y="131.5" width="37" height="37"/>
+                                                        <color key="color" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </activityIndicatorView>
+                                                    <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5L-ZJ-gzM">
+                                                        <rect key="frame" x="8" y="258" width="35" height="34"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="6" maxX="8" maxY="6"/>
+                                                        <state key="normal" image="square.and.arrow.down" catalog="system"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="downloadImageButtonTapped:" destination="sUf-H7-een" eventType="touchUpInside" id="AYe-Ke-AcH"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tt-fg-wfr">
+                                                        <rect key="frame" x="370" y="8" width="36" height="34"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="6" maxX="8" maxY="6"/>
+                                                        <state key="normal" image="arrow.up.left.and.arrow.down.right" catalog="system"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="expandImageButtonTapped:" destination="sUf-H7-een" eventType="touchUpInside" id="fHb-D8-jtf"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" id="rkb-Oc-b5x"/>
+                                                    <constraint firstItem="qWJ-9X-XHx" firstAttribute="centerY" secondItem="eBB-wJ-ZnW" secondAttribute="centerY" id="7GE-5O-Ti5"/>
+                                                    <constraint firstItem="7Tt-fg-wfr" firstAttribute="top" secondItem="eBB-wJ-ZnW" secondAttribute="top" constant="8" id="7cb-EG-o1F"/>
+                                                    <constraint firstItem="qWJ-9X-XHx" firstAttribute="centerX" secondItem="eBB-wJ-ZnW" secondAttribute="centerX" id="DQg-dj-aE0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="7Tt-fg-wfr" secondAttribute="trailing" constant="8" id="L3D-XD-z8F"/>
+                                                    <constraint firstItem="t32-mg-FB4" firstAttribute="leading" secondItem="eBB-wJ-ZnW" secondAttribute="leading" id="OkG-5T-LR7"/>
+                                                    <constraint firstItem="t32-mg-FB4" firstAttribute="top" secondItem="eBB-wJ-ZnW" secondAttribute="top" id="QrE-x5-ZFW"/>
+                                                    <constraint firstAttribute="bottom" secondItem="r5L-ZJ-gzM" secondAttribute="bottom" constant="8" id="aj7-d4-drH"/>
+                                                    <constraint firstItem="r5L-ZJ-gzM" firstAttribute="leading" secondItem="eBB-wJ-ZnW" secondAttribute="leading" constant="8" id="f0c-yg-OUR"/>
+                                                    <constraint firstAttribute="bottom" secondItem="t32-mg-FB4" secondAttribute="bottom" id="iRD-xP-JIh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="t32-mg-FB4" secondAttribute="trailing" id="kpf-lE-fmR"/>
                                                 </constraints>
-                                            </imageView>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="qWJ-9X-XHx">
-                                                <rect key="frame" x="188.5" y="302" width="37" height="37"/>
-                                                <color key="color" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </activityIndicatorView>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -163,20 +211,18 @@
                                             <constraint firstItem="NCf-E6-Uwz" firstAttribute="top" secondItem="pQO-nf-Ntx" secondAttribute="bottom" constant="8" id="HJs-YC-rse"/>
                                             <constraint firstItem="pQO-nf-Ntx" firstAttribute="leading" secondItem="gKz-ZO-cY4" secondAttribute="leading" id="StV-2G-c9p"/>
                                             <constraint firstItem="tRs-1O-4SQ" firstAttribute="top" secondItem="NCf-E6-Uwz" secondAttribute="bottom" constant="8" id="T8P-7e-GhU"/>
+                                            <constraint firstItem="eBB-wJ-ZnW" firstAttribute="top" secondItem="tRs-1O-4SQ" secondAttribute="bottom" id="XLR-v6-xjR"/>
                                             <constraint firstItem="NCf-E6-Uwz" firstAttribute="leading" secondItem="pQO-nf-Ntx" secondAttribute="leading" id="YK2-dj-1Y4"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="t32-mg-FB4" secondAttribute="bottom" id="ZEP-ke-IPn"/>
                                             <constraint firstItem="gKz-ZO-cY4" firstAttribute="top" secondItem="oPD-9t-Yva" secondAttribute="top" constant="24" id="Zsa-fE-9ZL"/>
-                                            <constraint firstItem="t32-mg-FB4" firstAttribute="leading" secondItem="oPD-9t-Yva" secondAttribute="leading" id="bx7-Pa-Pgr"/>
                                             <constraint firstItem="pQO-nf-Ntx" firstAttribute="top" secondItem="gKz-ZO-cY4" secondAttribute="bottom" constant="7.5" id="deX-lX-Y4B"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eBB-wJ-ZnW" secondAttribute="bottom" id="euc-jT-r9b"/>
                                             <constraint firstItem="ndq-3f-c5M" firstAttribute="centerY" secondItem="gKz-ZO-cY4" secondAttribute="centerY" id="hbu-GX-u3n"/>
                                             <constraint firstAttribute="trailing" secondItem="pQO-nf-Ntx" secondAttribute="trailing" constant="24" id="i32-W9-KHA"/>
-                                            <constraint firstAttribute="trailing" secondItem="t32-mg-FB4" secondAttribute="trailing" id="lqw-8o-5Uq"/>
+                                            <constraint firstItem="eBB-wJ-ZnW" firstAttribute="leading" secondItem="oPD-9t-Yva" secondAttribute="leading" id="lVQ-UN-94h"/>
+                                            <constraint firstAttribute="trailing" secondItem="eBB-wJ-ZnW" secondAttribute="trailing" id="nbl-og-pIT"/>
                                             <constraint firstItem="gKz-ZO-cY4" firstAttribute="leading" secondItem="oPD-9t-Yva" secondAttribute="leading" constant="24" id="ol2-m9-CKV"/>
-                                            <constraint firstItem="qWJ-9X-XHx" firstAttribute="centerY" secondItem="t32-mg-FB4" secondAttribute="centerY" id="uCV-mU-fjD"/>
-                                            <constraint firstItem="t32-mg-FB4" firstAttribute="top" secondItem="tRs-1O-4SQ" secondAttribute="bottom" id="uQt-Qe-sAJ"/>
                                             <constraint firstItem="ndq-3f-c5M" firstAttribute="leading" secondItem="gKz-ZO-cY4" secondAttribute="trailing" constant="12" id="vAK-w3-Mzk"/>
                                             <constraint firstItem="tRs-1O-4SQ" firstAttribute="leading" secondItem="oPD-9t-Yva" secondAttribute="leading" id="vAL-Qa-BQd"/>
-                                            <constraint firstItem="qWJ-9X-XHx" firstAttribute="centerX" secondItem="t32-mg-FB4" secondAttribute="centerX" id="yuU-BS-ggn"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -204,6 +250,7 @@
                         <outlet property="commentsLabel" destination="vb9-xv-la7" id="V4Q-nm-eNC"/>
                         <outlet property="dateLabel" destination="gKz-ZO-cY4" id="fdk-cI-GN2"/>
                         <outlet property="imageActivityIndicator" destination="qWJ-9X-XHx" id="oai-ir-DQq"/>
+                        <outlet property="imageContainer" destination="eBB-wJ-ZnW" id="n0x-pq-U03"/>
                         <outlet property="imageHeightConstraint" destination="rkb-Oc-b5x" id="e5p-La-awc"/>
                         <outlet property="imageView" destination="t32-mg-FB4" id="Pzh-wZ-3Qd"/>
                         <outlet property="subredditLabel" destination="Vd1-Sy-Ir6" id="TDI-O9-kCH"/>
@@ -219,6 +266,8 @@
     </scenes>
     <resources>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
+        <image name="arrow.up.left.and.arrow.down.right" catalog="system" width="128" height="115"/>
         <image name="message" catalog="system" width="128" height="113"/>
+        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
     </resources>
 </document>

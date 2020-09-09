@@ -13,4 +13,6 @@ protocol PostsCoordinator: AnyObject {
     
     /// Shows Post Detail screen
     func showPostDetail(post: Post)
+    
+    func showFullScreenImage(url: URL)
 }

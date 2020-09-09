@@ -14,6 +14,7 @@ class PostDetailPresenter {
     var post: Post?
     
     lazy var imageFetcher = ImageFetcher()
+    lazy var imageSaver = ImageSaver()
     
     init(view: PostDetailView) {
         self.view = view
@@ -54,6 +55,26 @@ class PostDetailPresenter {
           } catch {
             print("Error when fetching image: " + thumbnailURL.absoluteString + error.localizedDescription)
           }
+        }
+    }
+    
+    func downloadImage() {
+        if let image = self.view?.getImage() {
+            self.imageSaver.saveImage(image: image) { [weak self] error in
+                guard error == nil else {
+                    self?.view?.showAlert(message: "There was an error when trying to save the image in Photo Library")
+                    return
+                }
+                
+                self?.view?.showAlert(message: "The image has been saved to your Photo Library")
+            }
+        }
+    }
+    
+    func expandImage() {
+        if let post = self.post, let image = post.images?.sourceImage,
+            let decodedUrl = image.decodedUrl, let url = URL(string: decodedUrl) {
+            self.view?.showFullScreenImage(url: url)
         }
     }
 }

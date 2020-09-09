@@ -17,6 +17,7 @@ class PostDetailViewController: UIViewController, Storyboarded {
     @IBOutlet weak var upVotesLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     
+    @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
@@ -39,6 +40,14 @@ class PostDetailViewController: UIViewController, Storyboarded {
         }
         
         presenter.setupViewWithPost(post)
+    }
+    
+    @IBAction func expandImageButtonTapped(_ sender: Any) {
+        self.presenter.expandImage()
+    }
+    
+    @IBAction func downloadImageButtonTapped(_ sender: Any) {
+        self.presenter.downloadImage()
     }
 }
 
@@ -71,6 +80,7 @@ extension PostDetailViewController: PostDetailView {
     }
     
     func setImage(_ image: UIImage) {
+        self.imageContainer.isHidden = false
         self.imageActivityIndicator.stopAnimating()
         self.imageView.image = image
     }
@@ -82,5 +92,19 @@ extension PostDetailViewController: PostDetailView {
     
     func showImageLoading() {
         self.imageActivityIndicator.startAnimating()
+    }
+    
+    func getImage() -> UIImage? {
+        return self.imageView.image
+    }
+    
+    func showFullScreenImage(url: URL) {
+        self.coordinator?.showFullScreenImage(url: url)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Reddit", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

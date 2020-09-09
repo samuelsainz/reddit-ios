@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 /// Main coordinator for the app.
 /// Use this coordinator to navigate through view controllers
@@ -32,5 +33,11 @@ class MainCoordinator: Coordinator, PostsCoordinator {
         vc.coordinator = self
         vc.post = post
         navController.pushViewController(vc, animated: true)
+    }
+    
+    func showFullScreenImage(url: URL) {
+        let svc = SFSafariViewController(url: url)
+        svc.modalPresentationStyle = .pageSheet
+        self.navController.present(svc, animated: true, completion: nil)
     }
 }

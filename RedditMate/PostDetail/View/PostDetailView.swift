@@ -35,4 +35,13 @@ protocol PostDetailView: class {
     
     /// Show an activity indicator while downloading the image
     func showImageLoading()
+    
+    /// Returns the image shown by the image view
+    func getImage() -> UIImage?
+    
+    /// Show the image full screen
+    func showFullScreenImage(url: URL)
+    
+    /// Show an alert with given message
+    func showAlert(message: String)
 }
