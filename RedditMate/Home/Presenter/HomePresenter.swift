@@ -15,7 +15,8 @@ class HomePresenter {
     
     var posts: [Post]?
     
-    lazy var imageFetcher: ImageFetcher = ImageFetcher()
+    lazy var imageFetcher = ImageFetcher()
+    lazy var postsController = PostsController()
     
     init(view: HomeView) {
         self.view = view
@@ -23,9 +24,9 @@ class HomePresenter {
     
     // MARK: Posts management
     
-    /// Get the posts and update the view
+    /// Get the first page of posts and update the view
     func fetchPosts() {
-        PostsService.fetchPosts() { (posts, error) in
+        postsController.fetchPosts { (posts, error) in
             guard error == nil else {
                 // TODO: Show error view
                 return
@@ -76,6 +77,27 @@ class HomePresenter {
         
         // Show post detail
         self.view?.showPostDetail(post: post)
+    }
+    
+    /// Invoked when the user scrolls near the bottom of the table view
+    func nextPageNeeded() {
+        /// Get the next page of posts and update the view
+        postsController.fetchNextPosts { (posts, error) in
+            guard error == nil else {
+                // TODO: Show error view
+                return
+            }
+            
+            guard let posts = posts else {
+                return
+            }
+            
+            self.posts?.append(contentsOf: posts)
+            
+            DispatchQueue.main.async {
+                self.view?.showPosts(self.posts!, animated: false)
+            }
+        }
     }
     
     // MARK: Images management

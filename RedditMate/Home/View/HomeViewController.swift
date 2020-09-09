@@ -10,16 +10,15 @@ import UIKit
 
 class HomeViewController: UIViewController, Storyboarded {
     
-    weak var coordinator: PostsCoordinator?
-    
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Post>
     typealias DataSource = UITableViewDiffableDataSource<Section, Post>
     
-    lazy var presenter: HomePresenter = HomePresenter(view: self)
-    
-    var dataSource: DataSource!
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    weak var coordinator: PostsCoordinator?
+    lazy var presenter: HomePresenter = HomePresenter(view: self)
+    var dataSource: DataSource!
+    var totalPosts = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +36,7 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
+        tableView.prefetchDataSource = self
         tableView.register(postCellNib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
     
@@ -109,6 +109,7 @@ extension HomeViewController {
                     self?.presenter.cancelPostImageFetch(token: token)
                 }
             }
+                        
             return cell
         }
     }
@@ -120,6 +121,8 @@ extension HomeViewController {
         dataSource.apply(snapshot, animatingDifferences: animated)
         
         navigationItem.rightBarButtonItem?.isEnabled = !posts.isEmpty
+        
+        totalPosts = posts.count
     }
 }
 
@@ -129,5 +132,16 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.presenter.postSelected(index: indexPath.row)
+    }
+}
+
+// MARK: Table View DataSourcePrefetching
+
+extension HomeViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if (totalPosts != 0 && indexPaths.last!.row == totalPosts - 1) {
+            self.presenter.nextPageNeeded()
+        }
     }
 }
