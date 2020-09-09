@@ -23,7 +23,8 @@ class HomeViewController: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        configureNavigationBar()
         configureTableView()
         configureTableDataSource()
         presenter.fetchPosts()
@@ -39,12 +40,29 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView.register(postCellNib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
     
+    func configureNavigationBar() {
+        self.title = "Reddit Posts"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bin.xmark"), style: .plain, target: self, action: #selector(dismissAllButtonTapped))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.systemGray
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+    
+    @objc func dismissAllButtonTapped() {
+        let alert = UIAlertController(title: "Reddit", message: "Dismissing posts cannot be undone. Do you want to continue?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { _ in
+            self.presenter.allPostsDimissed()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -100,6 +118,8 @@ extension HomeViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(posts)
         dataSource.apply(snapshot, animatingDifferences: animated)
+        
+        navigationItem.rightBarButtonItem?.isEnabled = !posts.isEmpty
     }
 }
 

@@ -54,6 +54,11 @@ class HomePresenter {
         self.view?.showPosts(self.posts!, animated: true)
     }
     
+    func allPostsDimissed() {
+        self.posts = []
+        self.view?.showPosts([], animated: true)
+    }
+    
     /// This method is invoked when a post is selected
     /// - Parameter index: Selected post index
     func postSelected(index: Int) {
