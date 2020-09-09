@@ -10,13 +10,21 @@ import UIKit
 
 class HomeViewController: UIViewController, Storyboarded {
     
+    // Aliases
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Post>
     typealias DataSource = UITableViewDiffableDataSource<Section, Post>
     
+    // UI properties
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl: UIRefreshControl?
     
+    /// Navigation delegate
     weak var coordinator: PostsCoordinator?
+    
+    /// MVP Presenter
     lazy var presenter: HomePresenter = HomePresenter(view: self)
+    
+    // Properties for internal purpose only
     var dataSource: DataSource!
     var totalPosts = 0
     
@@ -26,7 +34,7 @@ class HomeViewController: UIViewController, Storyboarded {
         configureNavigationBar()
         configureTableView()
         configureTableDataSource()
-        presenter.fetchPosts()
+        presenter.loadView()
     }
     
     func configureTableView() {
@@ -36,8 +44,12 @@ class HomeViewController: UIViewController, Storyboarded {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
-        tableView.prefetchDataSource = self
         tableView.register(postCellNib, forCellReuseIdentifier: PostTableViewCell.identifier)
+        tableView.prefetchDataSource = self
+        
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: #selector(refreshView), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     func configureNavigationBar() {
@@ -64,6 +76,10 @@ class HomeViewController: UIViewController, Storyboarded {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    @objc func refreshView(sender: AnyObject) {
+        self.presenter.refreshRequested()
+    }
 }
 
 // MARK: MVP View implementation
@@ -75,7 +91,19 @@ extension HomeViewController: HomeView {
     }
     
     func showPostDetail(post: Post) {
-        self.coordinator?.showPostDetail(post: post)
+        coordinator?.showPostDetail(post: post)
+    }
+    
+    func showLoadingIndicator() {
+        // TODO
+    }
+    
+    func hideLoadingIndicator() {
+        // TODO
+    }
+    
+    func hideRefreshIndicator() {
+        refreshControl?.endRefreshing()
     }
 }
 

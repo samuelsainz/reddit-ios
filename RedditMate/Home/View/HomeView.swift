@@ -15,4 +15,13 @@ protocol HomeView: class {
     
     /// Show the `post` detail
     func showPostDetail(post: Post)
+    
+    /// Show loading indicator
+    func showLoadingIndicator()
+    
+    /// Hide loading indicator
+    func hideLoadingIndicator()
+    
+    /// Hide table refresh indicator
+    func hideRefreshIndicator()
 }

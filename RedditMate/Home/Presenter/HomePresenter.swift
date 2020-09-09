@@ -24,8 +24,26 @@ class HomePresenter {
     
     // MARK: Posts management
     
-    /// Get the first page of posts and update the view
-    func fetchPosts() {
+    /// Invoked when the `HomeView` has to be loaded
+    func loadView() {
+        self.view?.showLoadingIndicator()
+        self.fetchPosts() {
+            self.view?.showPosts(self.posts ?? [], animated: true)
+            self.view?.hideLoadingIndicator()
+        }
+    }
+    
+    /// Invoked when the user request to refresh`Posts`
+    func refreshRequested() {
+        self.fetchPosts() {
+            // When refreshing we want to shoe the posts without animation to avoid weard UX
+            self.view?.showPosts(self.posts ?? [], animated: false)
+            self.view?.hideRefreshIndicator()
+        }
+    }
+    
+    /// Get the first page of posts and update the view.
+    private func fetchPosts(updateViewCompletion: @escaping () -> Void ) {
         postsController.fetchPosts { (posts, error) in
             guard error == nil else {
                 // TODO: Show error view
@@ -37,9 +55,8 @@ class HomePresenter {
             }
             
             self.posts = posts
-            
             DispatchQueue.main.async {
-                self.view?.showPosts(posts, animated: true)
+                updateViewCompletion()
             }
         }
     }
