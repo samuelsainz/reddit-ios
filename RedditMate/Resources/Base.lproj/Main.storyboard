@@ -19,18 +19,25 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="AcL-Dc-p3i">
+                                <rect key="frame" x="188.5" y="456.5" width="37" height="37"/>
+                                <color key="color" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="9ie-Jg-YD8" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="0zl-1P-xmt"/>
                             <constraint firstItem="9ie-Jg-YD8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="K6E-ij-AMu"/>
                             <constraint firstItem="9ie-Jg-YD8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KgJ-Dj-ppv"/>
+                            <constraint firstItem="AcL-Dc-p3i" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="sRs-c3-uky"/>
+                            <constraint firstItem="AcL-Dc-p3i" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="t9U-rb-6kl"/>
                             <constraint firstItem="9ie-Jg-YD8" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="y9x-GZ-X0H"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="AcL-Dc-p3i" id="3q2-sU-vFz"/>
                         <outlet property="tableView" destination="9ie-Jg-YD8" id="GtC-XE-IN2"/>
                     </connections>
                 </viewController>
@@ -144,7 +151,7 @@
                                                     <constraint firstItem="XZM-Ui-gYG" firstAttribute="leading" secondItem="tRs-1O-4SQ" secondAttribute="leading" constant="12" id="iM1-J3-jFf"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBB-wJ-ZnW">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBB-wJ-ZnW">
                                                 <rect key="frame" x="0.0" y="320.5" width="414" height="300"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t32-mg-FB4">

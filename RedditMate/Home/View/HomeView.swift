@@ -24,4 +24,7 @@ protocol HomeView: class {
     
     /// Hide table refresh indicator
     func hideRefreshIndicator()
+    
+    /// Show some error mesage
+    func showError(message: String)
 }

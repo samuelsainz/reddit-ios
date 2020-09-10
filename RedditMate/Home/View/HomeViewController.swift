@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, Storyboarded {
     
     // UI properties
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var refreshControl: UIRefreshControl?
     
     /// Navigation delegate
@@ -95,15 +96,21 @@ extension HomeViewController: HomeView {
     }
     
     func showLoadingIndicator() {
-        // TODO
+        self.activityIndicator.startAnimating()
     }
     
     func hideLoadingIndicator() {
-        // TODO
+        self.activityIndicator.stopAnimating()
     }
     
     func hideRefreshIndicator() {
         refreshControl?.endRefreshing()
+    }
+    
+    func showError(message: String) {
+        let alert = UIAlertController(title: "Reddit", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
