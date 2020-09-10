@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		86171C152509BC6F003AEEFB /* PostDetailPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86171C142509BC6F003AEEFB /* PostDetailPresenterTests.swift */; };
 		86171C172509C2D0003AEEFB /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86171C162509C2D0003AEEFB /* PostTests.swift */; };
+		86171C182509E2E4003AEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B595682503DDD100041D1B /* LaunchScreen.storyboard */; };
 		861A7A602505C128000AFADA /* Double+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A7A5F2505C128000AFADA /* Double+Additions.swift */; };
 		861A7A632505C243000AFADA /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861A7A622505C243000AFADA /* Date+Additions.swift */; };
 		861C54752507056500380DE5 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C54742507056500380DE5 /* Coordinator.swift */; };
@@ -37,7 +38,6 @@
 		86B595622503DDD000041D1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B595602503DDD000041D1B /* Main.storyboard */; };
 		86B595652503DDD000041D1B /* RedditMate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86B595632503DDD000041D1B /* RedditMate.xcdatamodeld */; };
 		86B595672503DDD100041D1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B595662503DDD100041D1B /* Assets.xcassets */; };
-		86B5956A2503DDD100041D1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B595682503DDD100041D1B /* LaunchScreen.storyboard */; };
 		86B595812503E40100041D1B /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B595802503E40100041D1B /* HomePresenter.swift */; };
 		86B595842503E48700041D1B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B595832503E48700041D1B /* Post.swift */; };
 		86C902342507D87E00036B0C /* PostsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C902332507D87E00036B0C /* PostsCoordinator.swift */; };
@@ -404,7 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8637EE752504010D00D778F2 /* PostTableViewCell.xib in Resources */,
-				86B5956A2503DDD100041D1B /* LaunchScreen.storyboard in Resources */,
+				86171C182509E2E4003AEEFB /* LaunchScreen.storyboard in Resources */,
 				86B595672503DDD100041D1B /* Assets.xcassets in Resources */,
 				86B595622503DDD000041D1B /* Main.storyboard in Resources */,
 			);

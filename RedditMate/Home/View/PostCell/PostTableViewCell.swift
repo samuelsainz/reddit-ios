@@ -65,17 +65,6 @@ class PostTableViewCell: UITableViewCell {
             thumbnailHeightConstraint.constant = newHeight
         }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        if (selected) {
-            contentView.backgroundColor = UIColor.systemGray5
-        } else {
-            contentView.backgroundColor = UIColor.systemBackground
-        }
-    }
     
     @IBAction func onDismissTapped(_ sender: Any) {
         onDismiss()
